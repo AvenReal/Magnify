@@ -6,7 +6,7 @@ from pathlib import Path
 from paddleocr import *
 
 
-def image_to_md(image_path: str):
+def predict(image_path: str, output_path = "/usr/share/xournalpp/plugins/Magnify/outputs"):
     # ocr = PaddleOCR(
     #     use_doc_orientation_classify=False,
     #     use_doc_unwarping=False,
@@ -26,9 +26,9 @@ def image_to_md(image_path: str):
     )
     result = ocr.predict(image_path)
     for res in result:
-        res.save_to_img("output")
+        res.save_to_img(output_path)
 
-        res.save_to_json("output")
+        res.save_to_json(output_path)
 
 
 def main():
@@ -38,7 +38,7 @@ def main():
     parser.add_argument("image", help="Path to the input image")
     args = parser.parse_args()
 
-    image_to_md(args.image)
+    predict(args.image)
 
 
 if __name__ == "__main__":
