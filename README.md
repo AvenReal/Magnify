@@ -25,7 +25,7 @@ Unlike cloud-based OCR solutions, Magnify performs recognition **locally** using
 ## Requirements
 
 - Xournal++
-- Python 3.12
+- Python 3.12 (PaddlleOCR is not supported for an upper version od python)
 - PaddleOCR
 
 ## Installation
@@ -36,10 +36,10 @@ Clone the repository into the plugin folder of Xournal++:
 git clone https://github.com/AvenReal/Magnify /usr/share/xournalpp/plugins/Magnify
 ```
 
-Install the Python dependencies:
+Install the Python3.12 dependencies:
 
 ```bash
-pip install -r requirements.txt
+python3.12 -m pip install -r requirements.txt
 ```
 
 ## Usage
