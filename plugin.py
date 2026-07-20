@@ -6,39 +6,27 @@ from pathlib import Path
 from paddleocr import *
 
 
-def predict(image_path: str, output_path = "/usr/share/xournalpp/plugins/Magnify/outputs"):
-    # ocr = PaddleOCR(
-    #     use_doc_orientation_classify=False,
-    #     use_doc_unwarping=False,
-    #     use_textline_orientation=False,
-    #     engine="paddle",
-    #     ocr_version="PP-FormulaNet",
-    #     enable_mkldnn=False,
-    #     text_det_thresh=0.15,
-    #     text_det_box_thresh=0.3,
-    #     text_det_unclip_ratio=2.0,
-    #     text_det_limit_side_len=3072
-    # )
+def predict(xopp_path: str):
+
+    print("#########################################\n" + xopp_path + "\n#########################################\n")
     ocr = PPStructureV3(
         enable_mkldnn=False,
         use_doc_orientation_classify=False,
         use_doc_unwarping=False,
     )
-    result = ocr.predict(image_path)
+    result = ocr.predict(xopp_path + ".png")
     for res in result:
-        res.save_to_img(output_path)
-
-        res.save_to_json(output_path)
+        res.save_to_markdown(xopp_path + ".md")
 
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Convert an image to a searchable pdf using PaddleOCR"
+        description="Convert an xopp to a markdown file using PaddleOCR"
     )
-    parser.add_argument("image", help="Path to the input image")
+    parser.add_argument("xopp", help="Path to the input xopp")
     args = parser.parse_args()
 
-    predict(args.image)
+    predict(args.xopp)
 
 
 if __name__ == "__main__":
