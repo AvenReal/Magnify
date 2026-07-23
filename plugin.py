@@ -8,7 +8,6 @@ from paddleocr import *
 
 def predict(xopp_path: str):
 
-    print("#########################################\n" + xopp_path + "\n#########################################\n")
     ocr = PPStructureV3(
         enable_mkldnn=False,
         use_doc_orientation_classify=False,
